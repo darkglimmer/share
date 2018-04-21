@@ -374,15 +374,15 @@ margin-top: -50px; /* account for padding and border if not using box-sizing: bo
 ---
 
 ### 绝对定位
-所谓绝对定位，其实也要找个东西来相对来绝对的，而这个东西就是元素的第一个有position，且positon不能为static的祖先元素。
+所谓绝对定位，其实也要找个东西来相对来绝对的，而这个东西就是元素的第一个有 position，且 positon 不能为 static 的祖先元素。
 
 对于不同祖先元素的[实例](https://www.cnblogs.com/tim-li/archive/2012/07/09/2582618.html)
 
 
 **包裹性**
 ```
-一旦给元素加上 absolute 或 float 就相当于给元素加上了 display:block。 
-内联元素span 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将span 设成 display:block。
+一旦给元素加上 absolute 或 float 就相当于给元素加上了 display: block。 
+内联元素span 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将span 设成 display: block。
 ```
 
 
@@ -397,20 +397,20 @@ float 是欺骗父元素，让其父元素误以为其高度塌陷了，但 floa
 
 1.  absolute 分层后，第一个出现的问题就是让浏览器在何处显示该元素?  
 ```
-1）未指定left/top/right/bottom的absolute元素，其在所处层级中的定位点就是正常文档流中该元素的定位点。  
+1）未指定 left/top/right/bottom 的 absolute 元素，其在所处层级中的定位点就是正常文档流中该元素的定位点。  
 
-2）让absolute元素没有position:static以外的父元素。此时absolute所处的层是铺满全屏的，即铺满body。会根据用户指定位置的在body上进行定位。  
+2）让 absolute 元素没有 position: static以外的父元素。此时 absolute 所处的层是铺满全屏的，即铺满body。会根据用户指定位置的在body上进行定位。  
 
-3）只指定left时，元素的左上角定位点的left值会变成用户指定值。但top值仍旧是该元素在正常文档流中的top值。
+3）只指定 left 时，元素的左上角定位点的 left 值会变成用户指定值。但top值仍旧是该元素在正常文档流中的 top 值。
 ```
 
 2. <code>relative</code> ：
 
-如果 absolute 元素没有 position:static 以外的父元素，那将相对body 定位，没有极限。而一旦父元素被设为 relative，那 absolute 子元素将相对于其父元素定位。  
+如果 absolute 元素没有 position: static 以外的父元素，那将相对 body 定位，没有极限。而一旦父元素被设为 relative，那 absolute 子元素将相对于其父元素定位。  
 ```
-1）相对定位时，不必拘泥于 relative+absolute，试试去掉 relative，充分利用 absolute 自身定位的特性，将 relative 和absolute 解耦。
+1）相对定位时，不必拘泥于 relative + absolute，试试去掉 relative，充分利用 absolute 自身定位的特性，将 relative 和absolute 解耦。
 
-2）拉伸平铺时，用 relative 可以有效限制子 absolute 元素的拉伸平铺范围（注意是拉伸，不是缩小。要缩小请再加上 width/height:100%;）
+2）拉伸平铺时，用 relative 可以有效限制子 absolute 元素的拉伸平铺范围（注意是拉伸，不是缩小。要缩小请再加上 width / height: 100%;）
 ```
 
 3. <code>z-index</code> ：  
@@ -430,7 +430,7 @@ float 是欺骗父元素，让其父元素误以为其高度塌陷了，但 floa
 
 ### 不定宽布局方案
 
-所谓“宽度分离”，就是CSS中的width属性不与影响宽度的border/padding(有时候包括margin)属性共存。
+所谓“宽度分离”，就是CSS中的width属性不与影响宽度的 border/padding (有时候包括margin)属性共存。
 
 
 #### 两边定宽，中间自适应
