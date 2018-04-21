@@ -310,7 +310,7 @@ background: #ddd;
 
 ### 常用的居中布局方案
 
-#### [水平居中](https://www.w3cplus.com/css/elements-horizontally-center-with-css.html)
+#### 水平居中
 
 [**六种实现元素水平居中**](https://www.w3cplus.com/css/elements-horizontally-center-with-css.html)
 
@@ -380,15 +380,18 @@ margin-top: -50px; /* account for padding and border if not using box-sizing: bo
 
 
 **包裹性**
-
-一旦给元素加上 absolute 或 float 就相当于给元素加上了 display:block。 内联元素span 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将span 设成 display:block。
+```
+一旦给元素加上 absolute 或 float 就相当于给元素加上了 display:block。 
+内联元素span 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将span 设成 display:block。
+```
 
 
 **高度欺骗**
-
+```
 float 是欺骗父元素，让其父元素误以为其高度塌陷了，但 floa t元素本身仍处于文档流中，文字会环绕着 float 元素，不会被遮蔽。
 
 但 absolute 其实已经不能算是欺骗父元素了，而是出现了层级关系。从父元素的视点看，设成absolute 的图片已经完全消失不见了，因此从最左边开始显示文字。而 absolute 的层级高，所以图片遮盖了文字。
+```
 
 **如何确定定位点**
 
@@ -419,6 +422,7 @@ float 是欺骗父元素，让其父元素误以为其高度塌陷了，但 floa
 ```
 
 4. 减少重绘和回流的开销：
+
 可以将动画效果放到 absolute 元素中，避免浏览器将 render tree 回流。
 
 
