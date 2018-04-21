@@ -12,7 +12,7 @@
 #### 了解[BFC](https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html)——“块级格式化上下文”
 
 什么是 BFC ？  
-浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及 overflow 值不为 “visiable” 的块级盒子。  
+浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells 和 table-captions），以及 overflow 值不为 “visiable” 的块级盒子。  
 
 在BFC中，盒子从顶端开始垂直地一个接一个地排列，两个盒子之间的垂直的间隙是由他们的 margin 值所决定的。在一个 BFC 中，两个相邻的块级盒子的垂直外边距会产生折叠。在BFC中，每个盒子的左外边框紧挨着包含块的左边框（从右到左的格式，则为紧挨右边框）。即使存在浮动也是这样的（尽管一个盒子的边框会由于浮动而收缩），除非这个盒子的内部创建了一个新的BFC浮动，盒子本身将会变得更窄）。  
 
@@ -24,17 +24,17 @@ BFC 中的元素的布局是不受外界的影响（我们往往利用这个特�
 
 1.渲染规则：
 ```
-1. 内部的 Box 会在垂直方向，一个接一个地放置。  
+1) 内部的 Box 会在垂直方向，一个接一个地放置。  
 
-2. Box 垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box 的 margin 会发生重叠  
+2) Box 垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box 的 margin 会发生重叠  
 
-3. 每个元素的 margin box 的左边， 与包含块 border box 的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。  
+3) 每个元素的 margin box 的左边， 与包含块 border box 的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。  
 
-4. BFC的区域不会与 float box 重叠，常用来清除浮动和布局。 
+4) BFC的区域不会与 float box 重叠，常用来清除浮动和布局。 
 
-5. BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。  
+5) BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。  
 
-6. 计算BFC的高度时，浮动元素也参与计算
+6) 计算BFC的高度时，浮动元素也参与计算
 ```
 
 
@@ -108,7 +108,7 @@ BFC 中的元素的布局是不受外界的影响（我们往往利用这个特�
 3. 行框的宽度是由包含块和存在的浮动来决定。
 ```
 
-2.IFC ‘line-height’ 与 ‘vertical-align’ 属性
+2.IFC <code>‘line-height’</code> 与 <code>‘vertical-align’</code> 属性
 
 在了解这两个属性之前，要了解**行内元素**：
 
@@ -134,9 +134,10 @@ inline-level box 排版单位不是其本身，而是 line box。重点在于 li
 (4)最上方的 box 的上边界到最下方的下边界则是 line box 的高度。
 ```
 
-**‘line-height’**：计算行框里的各行内级框的高度。（对于置换元素、行内块元素、行内表格元素来说，这是边界框的高度。）  
 
-**‘vertical-align’** ：垂直对齐。在这些框使用 ‘top’ 或 ‘bottom’ 对齐的情况下，user-agent必须以最小化行框的高为目标对齐这些框。若这些框够高，则存在多个解而 CSS 2.1 不定义行框基线的位置。
+<code>**‘line-height’**</code>：计算行框里的各行内级框的高度。（对于置换元素、行内块元素、行内表格元素来说，这是边界框的高度。）  
+
+<code>**‘vertical-align’**</code>：垂直对齐。在这些框使用 ‘top’ 或 ‘bottom’ 对齐的情况下，user-agent必须以最小化行框的高为目标对齐这些框。若这些框够高，则存在多个解而 CSS 2.1 不定义行框基线的位置。
  
  总结：
 1. FC(Formatting Context)，用于初始化时设置盒子自身尺寸和排版规则。
@@ -155,7 +156,7 @@ inline-level box 排版单位不是其本身，而是 line box。重点在于 li
 
 #### Float布局
 
-float，顾名思义就是浮动，设置了float属性的元素会根据属性值向左或向右浮动，我们称设置了float属性的元素为浮动元素。
+<code>float</code>，顾名思义就是浮动，设置了float属性的元素会根据属性值向左或向右浮动，我们称设置了float属性的元素为浮动元素。
 
 浮动元素会从普通文档流中脱离，但浮动元素影响的不仅是自己，它会影响周围的元素对齐进行环绕。
 
@@ -187,26 +188,29 @@ float，顾名思义就是浮动，设置了float属性的元素会根据属性�
 
 
 [**具有包裹性——文字环绕效果**](https://www.jianshu.com/p/07eb19957991)
-
+```
 block元素不指定width的话，默认是100%，一旦让该div浮动起来，立刻会像inline元素一样产生包裹性，宽度会跟随内容自适应。
+```
 
 
 [**高度欺骗**](https://www.jianshu.com/p/07eb19957991)
 
 
 **浮动元素的延伸性**
+```
 当浮动元素高度高于父元素，即浮动元素超出了父元素的底端。只要将父元素也设置成浮动，浮动元素就会被包含到父元素里面。（该元素会进行延伸进而包含其所有浮动的子元素）。
+```
 
 
 **浮动元素存在超出父级元素的padding**
 ```
-1）负margin  
+1）负 margin  
 2）浮动元素宽度大于父级元素宽度
 ```
 
 **清除浮动**
 ```
-1. clear属性:在 clear 时要注意 clear 只对元素本身的布局起作用，仅作用于当前元素。
+1. clear 属性:在 clear 时要注意 clear 只对元素本身的布局起作用，仅作用于当前元素。
 2. 增加额外的 div:在其父级元素的内容中增加一个（作为最后一个子元素）。  
 3. 父级元素添加 overflow:hidden  
 4. 将父元素设置 auto  
@@ -215,7 +219,10 @@ block元素不指定width的话，默认是100%，一旦让该div浮动起来，
 ```  
 
 #### inline-block 布局
-inline-block：集合 block 以及 inline 的优点实现，每个都会新起一行，可以设置宽高，行高，上下边距，而且可以和其他行内元素同一行。  
+
+<code>inline-block</code>：
+
+集合 block 以及 inline 的优点实现，每个都会新起一行，可以设置宽高，行高，上下边距，而且可以和其他行内元素同一行。  
 
 <code>display:inline-block</code>没有父元素的匿名包裹特性，使用非常自由，可与文字，图片混排，可内嵌 block 属性元素，可以置身于 inline 水平的元素中。  
 
@@ -231,14 +238,17 @@ inline-block：集合 block 以及 inline 的优点实现，每个都会新起�
 
 
 **包裹性**
+```
+默认情况下一个div的宽度是以100%显示的，而一旦给这个div添加了 postion:absolute 属性，则100%的默认宽度会变成自适应的内部元素宽度。  
 
-默认情况下一个div的宽度是以100%显示的，而一旦给这个div添加了postion:absolute属性，则100%的默认宽度会变成自适应的内部元素宽度。  
-overflow | position:absolute | float:left/right 等都可以让元素inline-block化产生包裹性。
+overflow | position:absolute | float:left/right 等都可以让元素 inline-block 化产生包裹性。
+```
 
 
 **水平间隙问题**
-
+```
 在列表 item 元素之间输入了回车换行以方便阅读，而这间隙正是这个回车换行产生的空白符。
+```
 
 **消除方法：**
 
@@ -255,14 +265,17 @@ font-size: 16px; /* 重置 font-size 为16px*/
 background: #ddd;
 }
 ```
-2）<code>letter-spacing</code> 属性
+2）<code>letter-spacing</code> 属性:
+
 控制文字间的水平距离的，支持负值，可以让文字水平方向上重叠（line-height是让文字垂直方向上重叠）。
 
 
 **垂直间隙问题**
 
-由于 <code>inline-block</code> 垂直对齐使用的是 vertical-align 属性，而该属性默认的对齐方式为 baseline。  
+由于 <code>inline-block</code> 垂直对齐使用的是 vertical-align 属性，而该属性默认的对齐方式为 baseline。 
+``` 
 解决：设置 img 的 vertical-align 的值为 middle，text-top，text-bottom。
+```
 
 
 **inline-block列表布局**
@@ -274,6 +287,7 @@ background: #ddd;
 #### flex布局
 
 任何一个容器都可以指定为 Flex 布局。Webkit 内核的浏览器，必须加上<code>-webkit</code> 前缀。  
+
 **注意:设为 Flex 布局以后，子元素的 float、clear和vertical-align属性将失效。**
 
 [flex容器和项目的属性](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
@@ -303,7 +317,7 @@ background: #ddd;
 **实现多个块级元素**：
 
 如果要让多个块级元素在同一水平线上居中，那么可以修改它们的 display 值。  
-```
+```x
 1）使用 inline-block 的显示方式  
 2）使用了 flexbox 的显示方式
 ```
@@ -314,7 +328,7 @@ background: #ddd;
 
 [**CSS实现垂直居中的5种方法**](https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/)
 
-+ 使用伪元素：  
++ 使用伪元素： 
 添加伪元素:before 或 :after，让它的高度与父元素相同，这样子元素垂直对齐时就能居中了。
 
 + transform：  
