@@ -30,7 +30,7 @@
 
 ### 先行知识：BFC和IFC
 
-**CSS 属性 width 和 height 作用于 div 元素所产生的盒子，而不是元素本身**
+**CSS 属性 width 和 height 作用于 div 元素所产生的盒子，而不是元素本身**
 
 #### 了解 [BFC](https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html)—— “块级格式化上下文”
 
