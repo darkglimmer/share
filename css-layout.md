@@ -710,7 +710,7 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 #### 水平居中
 
-在确定元素容器的宽度的情况下:
+在确定元素容器的宽度的情况下:
 ```
 .center {
 	width: 960px;
