@@ -574,12 +574,6 @@ block 元素不指定 width 的话，默认是100%，一旦让该 div 浮动起�
 
 
 
-
-
-
-
-
-
 #### inline-block 布局
 
 <code>inline-block</code>：
@@ -644,11 +638,6 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 
 
-
-
-
-
-
 #### flex布局
 
 任何一个容器都可以指定为 Flex 布局。<code>Webkit</code> 内核的浏览器，必须加上<code>-webkit</code> 前缀。  
@@ -660,6 +649,8 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 [尝试](https://codepen.io/anon/pen/erpgor)
 
 [单项目到多项目的flex应用](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+
+
 
 
 
@@ -719,29 +710,88 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 #### 水平居中
 
-[**六种实现元素水平居中**](https://www.w3cplus.com/css/elements-horizontally-center-with-css.html)
-
-**实现多个块级元素**：
-
-如果要让多个块级元素在同一水平线上居中，那么可以修改它们的 display 值。  
-```x
-1）使用 inline-block 的显示方式  
-2）使用了 flexbox 的显示方式
+在确定元素容器的宽度的情况下:
+```
+.center {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}	
 ```
 
-多个垂直堆栈的块元素，那么仍然可以通过设置 margin-left 和 margin-right 为 auto
+但有很多情况之下，我们是无法确定元素容器的宽度。未有明确宽度的时候，上面的方法无法让我们实现元素水平居中。这时我们可以通过
+[**六种实现元素水平居中**](https://www.w3cplus.com/css/elements-horizontally-center-with-css.html):
+
++ <code>margin</code> 和 <code>width</code> 实现水平居中
+
+在分页容器上定义一个宽度，然后配合 <code>margin</code> 的左右值为 <code>auto</code> 实现效果
+
+缺点：无法确定每个分页选项的宽度是多少，也就无法确认容器的宽度。
+
++ <code>inline-block</code> 实现水平居中方法
+
+关键要在元素的父容器中设置 <code>text-align</code> 的属性为 <code>center</code>
+
+缺点：分页项与分页项由回车符带来的空白间距，具体解决方法可以看[如何解决inline-block元素的空白间距](http://www.w3cplus.com/css/fighting-the-space-between-inline-block-elements)
+
++ [浮动实现水平居中的方法](http://matthewjamestaylor.com/blog/beautiful-css-centered-menus-no-hacks-full-cross-browser-support)
+
+浮动实现居中的关键就是：如果 div 设置了浮动之后，他的内容有多宽度就会撑开有多大的容器。然后通过 <code>position:relative</code> 属性实现让分页导航居中。
+
++ 让导航浮动到左边，而且每个分页项也进行浮动:
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-27%20%E4%B8%8B%E5%8D%883.48.36.png?1524815521024">
+
++ 首先在列表项 <code>ul</code> 上向右移动50%, <code>left:50%</code>，使整个分页向右移动了 50% 的距离：
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-27%20%E4%B8%8B%E5%8D%883.48.43.png?1524815524687">
+
++ 接着我们在 <code>li</code> 上也定义 <code>position:relative</code> 属性，但其移动的方向和列表 <code>ul</code> 移动的方向刚好是反方向，而其移动的值保持一致：
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-27%20%E4%B8%8B%E5%8D%883.48.47.png?1524815527384">
+
++ 绝对定位实现水平居中
+
+可以通过设定父元素 <code> position: relative</code> ，<code>ul</code> 为 <code>position: absolute</code> 实现。
+
++ CSS3的flex实现水平居中方法
+
++ CSS3的fit-content实现水平居中方法
+
+<code>fit-content</code> 是CSS中给 <code>width</code> 属性新加的一个属性值，配合 <code>margin</code> 可以轻松的实现水平居中的效果
+
+以上六种方法的[实现](https://codepen.io/anon/pen/LmbGQd)以及效果图：
+
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-27%20%E4%B8%8B%E5%8D%883.32.50.png?1524814747077">
+
+
+**实现多个块级元素**
+
+如果要让多个块级元素在同一水平线上居中，那么可以修改它们的 display 值。
+
++ 使用 <code>inline-block</code> 的显示方式  
++ 使用了 <code>flexbox</code> 的显示方式
+
+多个垂直堆栈的块元素，那么仍然可以通过设置 <code>margin-left</code> 和 <code>margin-right</code> 为 <code>auto</code>
 
 #### 垂直居中
 
-[**CSS实现垂直居中的5种方法**](https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/)
+[**CSS实现垂直居中的5种方法**](https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/)、
+
+通过这个实现[页面制作](https://codepen.io/anon/pen/BxQKxQ)
 
 + 使用伪元素： 
 添加伪元素 <code>:before</code> 或 <code>:after</code>，让它的高度与父元素相同，这样子元素垂直对齐时就能居中了。
 
-+ <code>transform</code> ：  
-用 translateY(-50%) 来达到 - height/2——**不需要知道居中元素的高度。**
+[实现](https://codepen.io/anon/pen/WJowKE)
 
-+ <code>flexbox</code> :
+但如果我们需要使用父元素的伪元素做一些其它的事情，同时又需要居中，那我们就无能为力了。
+
++ <code>transform</code>：  
+用 <code>translateY: -50%</code> 来达到 - height / 2 —— **不需要知道居中元素的高度**
+
+[实现](https://codepen.io/anon/pen/vjyGzO)
+
++ <code>flexbox</code>:
+
+[实现](https://codepen.io/anon/pen/mLOPzV)
 ```
 .container {
     display: flex;
@@ -750,19 +800,20 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 }
 ```
 
+
 **实现多行**：
 
-```
-1）使用等值 padding-top 和 padding-bottom 的方式实现垂直居中。CSS 为文本设置一个类似 table-cell 的父级容器，然后使用 vertical-align 属性实现垂直居中。  
++ 使用等值 <code>padding-top</code> 和 <code>padding-bottom</code> 的方式实现垂直居中。CSS 为文本设置一个类似 <code>table-cell</code> 的父级容器，然后使用 <code>vertical-align</code> 属性实现垂直居中。  
 
-2）使用 flexbox 实现垂直居中，对于父级容器为 display: flex 的元素来说，它的每一个子元素都是垂直居中的。  
 
-3）幽灵元素（ghost element）的非常规解决方式：在垂直居中的元素上添加伪元素，设置伪元素的高等于父级容器的高，然后为文本添加 vertical-align: middle; 样式，即可实现垂直居中。
-```
++ 使用 flexbox 实现垂直居中，对于父级容器为 <code>display: flex</code> 的元素来说，它的每一个子元素都是垂直居中的。  
+
++ 幽灵元素（ghost element）的非常规解决方式：在垂直居中的元素上添加伪元素，设置伪元素的高等于父级容器的高，然后为文本添加 <code>vertical-align: middle</code> 样式，即可实现垂直居中。
+
 
 **块级元素**
 
-1）已知元素的高度：
+1. 已知元素的高度：
 ```
 .parent {
     position: relative;
@@ -775,62 +826,64 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 }
 ```
 
-2）未知元素的高度:  
-那么就需要先将元素定位到容器的中心位置，然后使用 transform 的 translate 属性，将元素的中心和父容器的中心重合，从而实现垂直居中。
+2. 未知元素的高度:  
+那么就需要先将元素定位到容器的中心位置，然后使用 <code>transform</code> 的 <code>translate</code> 属性，将元素的中心和父容器的中心重合，从而实现垂直居中。
 
 ---
 
 ### 绝对定位
-所谓绝对定位，其实也要找个东西来相对来绝对的，而这个东西就是元素的第一个有 position，且 positon 不能为 static 的祖先元素。
+
+所谓绝对定位，其实也要找个东西来相对来绝对的，而这个东西就是元素的第一个有 <code>position</code>，且 <code>positon</code> 不能为 <code>static</code> 的祖先元素。
 
 对于不同祖先元素的[实例](https://www.cnblogs.com/tim-li/archive/2012/07/09/2582618.html)
 
 
 **包裹性**
-```
-一旦给元素加上 absolute 或 float 就相当于给元素加上了 display: block。 
-内联元素 span 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将 span 设成 display: block。
-```
+
+一旦给元素加上 <code>absolute</code> 或 <code>float</code> 就相当于给元素加上了 <code>display: block</code>。 
+内联元素 <code>span</code> 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将 <code>span</code> 设成 <code>display: block</code>。
+
 
 
 **高度欺骗**
-```
-float 是欺骗父元素，让其父元素误以为其高度塌陷了，但 floa t元素本身仍处于文档流中，文字会环绕着 float 元素，不会被遮蔽。
 
-但 absolute 其实已经不能算是欺骗父元素了，而是出现了层级关系。从父元素的视点看，设成absolute 的图片已经完全消失不见了，因此从最左边开始显示文字。而 absolute 的层级高，所以图片遮盖了文字。
-```
+<code>float</code> 是欺骗父元素，让其父元素误以为其高度塌陷了，但 <code>float</code> 元素本身仍处于文档流中，文字会环绕着 <code>float</code> 元素，不会被遮蔽。
+
+但 <code>absolute</code> 其实已经不能算是欺骗父元素了，而是出现了层级关系。从父元素的视点看，设成 <code>absolute</code> 的图片已经完全消失不见了，因此从最左边开始显示文字。而 <code>absolute</code> 的层级高，所以图片遮盖了文字。
+
 
 **如何确定定位点**
 
 1.  absolute 分层后，第一个出现的问题就是让浏览器在何处显示该元素?  
-```
-1）未指定 left/top/right/bottom 的 absolute 元素，其在所处层级中的定位点就是正常文档流中该元素的定位点。  
 
-2）让 absolute 元素没有 position: static以外的父元素。此时 absolute 所处的层是铺满全屏的，即铺满body。会根据用户指定位置的在body上进行定位。  
++ 未指定 <code>left/top/right/bottom</code> 的 <code>absolute</code> 元素，其在所处层级中的定位点就是正常文档流中该元素的定位点。  
 
-3）只指定 left 时，元素的左上角定位点的 left 值会变成用户指定值。但top值仍旧是该元素在正常文档流中的 top 值。
-```
++ 让 <code>absolute</code> 元素没有 <code>position:static</code> 以外的父元素。此时 <code>absolute</code> 所处的层是铺满全屏的，即铺满 body。会根据用户指定位置的在 body 上进行定位。  
 
-2. <code>relative</code> ：
++ 只指定 left 时，元素的左上角定位点的 left 值会变成用户指定值。但 top 值仍旧是该元素在正常文档流中的 top 值。
 
-如果 absolute 元素没有 position: static 以外的父元素，那将相对 body 定位，没有极限。而一旦父元素被设为 relative，那 absolute 子元素将相对于其父元素定位。  
-```
-1）相对定位时，不必拘泥于 relative + absolute，试试去掉 relative，充分利用 absolute 自身定位的特性，将 relative 和absolute 解耦。
 
-2）拉伸平铺时，用 relative 可以有效限制子 absolute 元素的拉伸平铺范围（注意是拉伸，不是缩小。要缩小请再加上 width / height: 100%;）
-```
+2. <code>relative</code>:
+
+如果 <code>absolute</code> 元素没有 <code>position: static</code> 以外的父元素，那将相对 body 定位，没有极限。而一旦父元素被设为 <code>relative</code>，那 <code>absolute</code> 子元素将相对于其父元素定位。  
+
++ 相对定位时，不必拘泥于 <code>relative</code> + <code>absolute</code>，试试去掉 <code>relative</code>，充分利用 <code>absolute</code> 自身定位的特性，将 <code>relative</code> 和 <code>absolute</code> 解耦。
+
++ 拉伸平铺时，用 <code>relative</code> 可以有效限制子 <code>absolute</code> 元素的拉伸平铺范围,注意是拉伸，不是缩小。要缩小请再加上 <code>width / height: 100%</code>。
+
 
 3. <code>z-index</code> ：  
-```
-1）让 absolute 元素覆盖正常文档流内元素（不用设z-index，自然覆盖）  
-2）然后一个 absolute 元素覆盖前一个 absolute 元素（不用设z-index，只要在 HTML 端正确设置元素顺序即可）  
 
-3）当 absolute 元素覆盖另一个 absolute 元素，且 HTML 端不方便调整 DOM 的先后顺序时，需要设置 z-index: 1。非常少见的情况下多个 absolute 交错覆盖，或者需要显示最高层次的模态对话框时，可以设置 z-index > 1。
-```
++ 让 <code>absolute</code> 元素覆盖正常文档流内元素（不用设z-index，自然覆盖)
+
++ 然后一个 <code>absolute</code> 元素覆盖前一个 <code>absolute</code> 元素（不用设 <code>z-index</code>，只要在 HTML 端正确设置元素顺序即可）  
+
++ 当 <code>absolute</code> 元素覆盖另一个 <code>absolute</code> 元素，且 <code>HTML</code> 端不方便调整 DOM 的先后顺序时，需要设置 <code>z-index: 1</code>。非常少见的情况下多个 <code>absolute</code> 交错覆盖，或者需要显示最高层次的模态对话框时，可以设置 <code>z-index > 1</code>。
+
 
 4. 减少重绘和回流的开销：
 
-可以将动画效果放到 absolute 元素中，避免浏览器将 render tree 回流。
+可以将动画效果放到 <code>absolute</code> 元素中，避免浏览器将 <code>render tree</code> 回流。
 
 
 ---
