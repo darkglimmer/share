@@ -712,10 +712,20 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 在确定元素容器的宽度的情况下:
 ```
+//块级元素
 .center {
 	width: 960px;
 	margin:0 auto;
 }	
+//文本
+.center {
+    text-align:center; 
+}
+//图片
+<div align="center">
+    <img src="http://www.divcss5.com/img201305/divcss5-logo-201305.gif" />
+</div> 
+
 ```
 
 但有很多情况之下，我们是无法确定元素容器的宽度。未有明确宽度的时候，上面的方法无法让我们实现元素水平居中。这时我们可以通过
@@ -756,6 +766,7 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 <code>fit-content</code> 是CSS中给 <code>width</code> 属性新加的一个属性值，配合 <code>margin</code> 可以轻松的实现水平居中的效果
 
+
 以上六种方法的[实现](https://codepen.io/anon/pen/LmbGQd)以及效果图：
 
 <img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-27%20%E4%B8%8B%E5%8D%883.32.50.png?1524814747077">
@@ -763,7 +774,7 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 **实现多个块级元素**
 
-如果要让多个块级元素在同一水平线上居中，那么可以修改它们的 display 值。
+如果要让多个块级元素在同一水平线上居中，那么可以修改它们的 <code>display</code> 值。
 
 + 使用 <code>inline-block</code> 的显示方式  
 + 使用了 <code>flexbox</code> 的显示方式
@@ -772,11 +783,15 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 #### 垂直居中
 
-[**CSS实现垂直居中的5种方法**](https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/)、
++ <code>line-height</code>: 
 
-通过这个实现[页面制作](https://codepen.io/anon/pen/BxQKxQ)
+设置为对象的 <code>height</code> 值就可以使文本居中了。
+
+[实现](https://codepen.io/anon/pen/zjNppB)
+
 
 + 使用伪元素： 
+
 添加伪元素 <code>:before</code> 或 <code>:after</code>，让它的高度与父元素相同，这样子元素垂直对齐时就能居中了。
 
 [实现](https://codepen.io/anon/pen/WJowKE)
@@ -784,11 +799,12 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 但如果我们需要使用父元素的伪元素做一些其它的事情，同时又需要居中，那我们就无能为力了。
 
 + <code>transform</code>：  
+
 用 <code>translateY: -50%</code> 来达到 - height / 2 —— **不需要知道居中元素的高度**
 
 [实现](https://codepen.io/anon/pen/vjyGzO)
 
-+ <code>flexbox</code>://官网
++ <code>flexbox</code>:
 
 [实现](https://codepen.io/anon/pen/mLOPzV)
 ```
@@ -842,6 +858,9 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 一旦给元素加上 <code>absolute</code> 或 <code>float</code> 就相当于给元素加上了 <code>display: block</code>。 
 内联元素 <code>span</code> 默认宽度是自适应的，你给其加上 width 是不起作用的。要想 width 定宽，你需要将 <code>span</code> 设成 <code>display: block</code>。
 
+[实现](https://codepen.io/anon/pen/BxpJOM)
+
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-29%20%E4%B8%8B%E5%8D%8810.16.11.png?1525011655218">
 
 
 **高度欺骗**
@@ -853,18 +872,42 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 **如何确定定位点**
 
-1.  absolute 分层后，第一个出现的问题就是让浏览器在何处显示该元素?  
+1.  <code>absolute</code> 分层后，第一个出现的问题就是让浏览器在何处显示该元素?  
 
 + 未指定 <code>left/top/right/bottom</code> 的 <code>absolute</code> 元素，其在所处层级中的定位点就是正常文档流中该元素的定位点。  
+改变图片为第二个子元素：
 
-+ 让 <code>absolute</code> 元素没有 <code>position:static</code> 以外的父元素。此时 <code>absolute</code> 所处的层是铺满全屏的，即铺满 body。会根据用户指定位置的在 body 上进行定位。  
+[实现](https://codepen.io/anon/pen/vjgpPa)
 
-+ 只指定 left 时，元素的左上角定位点的 left 值会变成用户指定值。但 top 值仍旧是该元素在正常文档流中的 top 值。
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-29%20%E4%B8%8B%E5%8D%8810.28.27.png?1525012126678">
+
++ 让 <code>absolute</code> 元素没有 <code>position:static</code> 以外的父元素。此时 <code>absolute</code> 所处的层是铺满全屏的，即铺满 body。会根据用户指定位置的在 body 上进行定位。 
+
+只指定 <code>left</code> 时，元素的左上角定位点的 <code>left</code> 值会变成用户指定值。但 <code>top</code> 值仍旧是该元素在正常文档流中的 <code>top</code> 值：
+
+[实现](https://codepen.io/anon/pen/ergywB)
+
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-29%20%E4%B8%8B%E5%8D%8810.33.51.png?1525012464071">
+
+同理可得只指定 <code>right</code> 时
+
+
+只指定 <code>top</code> 时，元素的左上角定位点的 <code>top</code> 值会变成用户指定值。但 <code>left</code> 值仍旧是该元素在正常文档流中的 <code>left</code> 值：
+
+[实现](https://codepen.io/anon/pen/wjgywV)
+
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-29%20%E4%B8%8B%E5%8D%8810.40.06.png?1525012884809">
+
+同理可得只指定 <code>bottom</code> 时
 
 
 2. <code>relative</code>:
 
 如果 <code>absolute</code> 元素没有 <code>position: static</code> 以外的父元素，那将相对 body 定位，没有极限。而一旦父元素被设为 <code>relative</code>，那 <code>absolute</code> 子元素将相对于其父元素定位。  
+
+[实现](https://codepen.io/anon/pen/jxyZqW)
+
+<img src = "https://cdn.glitch.com/6fab60b1-32c5-42ee-b5f3-40edd35dc042%2F%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-04-29%20%E4%B8%8B%E5%8D%8810.53.17.png?1525013733462">
 
 + 相对定位时，不必拘泥于 <code>relative</code> + <code>absolute</code>，试试去掉 <code>relative</code>，充分利用 <code>absolute</code> 自身定位的特性，将 <code>relative</code> 和 <code>absolute</code> 解耦。
 
@@ -898,5 +941,5 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 #### 两边自适应，中间定宽
 
-[常见实现方式]
+[常见实现方式](https://www.cnblogs.com/lgmcolin/archive/2013/05/29/3106579.html)
 
