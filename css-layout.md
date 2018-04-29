@@ -714,8 +714,7 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 ```
 .center {
 	width: 960px;
-	margin-left: auto;
-	margin-right: auto;
+	margin:0 auto;
 }	
 ```
 
@@ -789,7 +788,7 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 [实现](https://codepen.io/anon/pen/vjyGzO)
 
-+ <code>flexbox</code>:
++ <code>flexbox</code>://官网
 
 [实现](https://codepen.io/anon/pen/mLOPzV)
 ```
@@ -897,31 +896,7 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 [常见实现方式](https://juejin.im/entry/5a6306966fb9a01c9e460c22)
 
-+ BFC 三栏布局
-BFC 规则有这样的描述：BFC 区域，不会与浮动元素重叠。因此我们可以利用这一点来实现 3 列布局。
-```
-.left {
-    float: left;
-    height: 200px;
-    width: 100px;
-    margin-right: 20px;
-    background-color: red;
-}
-.right {
-    width: 200px;
-    height: 200px;
-    float: right;
-    margin-left: 20px;
-    background-color: blue;
-}    
-.main {
-    height: 200px;
-    overflow: hidden;
-    background-color: green;
-}
-```
-
 #### 两边自适应，中间定宽
 
-[常见实现方式](https://segmentfault.com/a/1190000008705541)
+[常见实现方式]
 
