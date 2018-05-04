@@ -941,5 +941,130 @@ overflow | position:absolute | float:left/right 等都可以让元素 <code>inli
 
 #### 两边自适应，中间定宽
 
-[常见实现方式](https://www.cnblogs.com/lgmcolin/archive/2013/05/29/3106579.html)
++ 通过浮动与 <code>margin</code> 实现
 
+[实现](https://codepen.io/anon/pen/GdvNQx)
+
+代码：
+```
+//HTML
+<div class="left">
+    <div class="inner">left</div>
+</div>
+<div class="center">
+    <div class="inner">center</div>
+</div>
+<div class="right">
+    <div class="inner">right</div>
+</div>
+
+//CSS
+.center {
+  width: 600px; 
+  background: yellow;
+  float: left; 
+}
+.left{
+  float: left; 
+  width: 50%; 
+  margin-left: -300px; 
+}
+.right { 
+  float: left; 
+  width: 50%; 
+  margin-left: -300px; 
+}
+
+.inner { 
+  padding: 50px;
+}
+.left .inner,
+.right .inner { 
+  margin-left: 300px;
+  background: red;
+}
+```
+
+将其都进行 50% 的宽度设置，并加上中负的左边距，此负的左边距最理想的值是中间栏宽度的一半加上 1px，比如说此例中是 "600px/2+1", 也就是说他们都有一个 <code>margin-left: -301px; </code>。这样一来，左右边栏内容无法正常显示，那是因为对他们进行了负的左边距操作，现在只需要在左右边栏的内层 <code>div.inner</code> 将其拉回来
+
++ 通过定位与 <code>margin</code> 实现
+
+[实现](https://codepen.io/anon/pen/GdvNQx)
+
+CSS 代码：
+```
+* { padding: 0; margin: 0;}
+.center { 
+  width: 600px; 
+  background: yellow;
+  margin: 0 auto;
+}
+.inner { 
+  padding: 50px;
+}
+.left { 
+  position: absolute; 
+  left: 0;
+  top: 0;
+  width: 50%;
+}
+.right { 
+  position: absolute; 
+  right: 0; 
+  top: 0;
+  width: 50%;
+}
+.left .inner { 
+  margin-left: 300px; 
+  position: relative; 
+  left: -300px; 
+  background: red;
+}
+.right .inner { 
+  margin-right: 300px; 
+  position: relative; 
+  left: 300px; 
+  background: red;}
+```
++ CSS3 的 flex 布局
+
+[实现](https://codepen.io/anon/pen/KRvNrO)
+
+代码：
+```
+//HTML
+<div class="grid">
+  <div class="col fluid">
+    left
+  </div>
+  <div class="col fixed">
+    center
+  </div>
+  <div class="col fluid">
+    right
+  </div>
+</div>
+
+//CSS
+.grid {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+.col {
+  padding: 50px;
+  
+}
+.fluid {
+  flex: 1;
+  background: red;
+}
+.fixed {
+  width: 400px;
+  background: yellow;
+}
+
+```
